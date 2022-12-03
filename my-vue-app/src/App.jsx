@@ -1,25 +1,32 @@
 import React from 'react'
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller,FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { filledInputClasses, TextField } from '@mui/material'
 import * as yup from 'yup';
+import SubOne from './subOne';
+import SubTwo from './subTwo';
+
 
 const schema = yup.object().shape({
+  firstName:yup.string().required(),
+  lastName:yup.string().required(),
   email: yup.string().email().required(),
   password: yup.string().min(4).max(20).required(),
 })
 
 let App = () => {
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    control,
-    formState: { errors }
-  } = useForm({
+  const methods = useForm({
     resolver: yupResolver(schema)
   });
+
+
+    const {  register,
+      handleSubmit,
+      watch,
+      control,
+      formState: { errors }} = methods
+
 
   const formSubmitHandler = (data) => {
     console.log("form data is", data)
@@ -28,30 +35,14 @@ let App = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(formSubmitHandler)}>
-        <Controller
-          name='email'  defaultValue="aungkyawkhaing2000@gmail.com"  control={control}
-          render={({ field }) => (
-            <TextField 
-            {...field} 
-            type="email" 
-            id="" 
-            label="Email" 
-            variant='outlined'
-            error ={!!errors.email}
-            helperText={errors.email ? errors.email?.message : ''}
-            />
-
-          )}
-        />
-
-        <br />
-        <input className={`${errors.password && 'red'}`} {...register('password', { required: true })} defaultValue={""} type="password" />
-        <br />
-        {errors.password && <span>{errors.password.message}</span>}
+        <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(formSubmitHandler)}>
+         <SubOne/>
+          <SubTwo/>
         <br />
         <button type='submit'>Submit</button>
       </form>
+        </FormProvider>
     </div>
   )
 }
