@@ -1,5 +1,5 @@
 import React from 'react'
-import {useForm} from 'react-hook-form';
+import {useForm ,Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
@@ -14,6 +14,7 @@ let App = () => {
     register,
     handleSubmit,
     watch,
+    control,
     formState:{errors}
   }  = useForm({
     resolver:yupResolver(schema)
@@ -27,6 +28,9 @@ let App = () => {
   return (
     <div>
          <form onSubmit={handleSubmit(formSubmitHandler)}>
+              <Controller
+                 name
+              />
              <input type="email"  {...register('email')} id="" defaultValue={"aungkyawkhaing2000@gmail.com"} />
              <br />
              <input className={`${errors.password && 'red'}`} {...register('password',{required:true})} defaultValue={""} type="password"  />
