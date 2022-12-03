@@ -15,3 +15,6 @@ input{
 span{
    color: red;
 }
+.red{
+  border-color: red;
+}
