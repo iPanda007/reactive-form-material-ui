@@ -5,6 +5,7 @@ import { filledInputClasses, TextField } from '@mui/material'
 import * as yup from 'yup';
 import SubOne from './subOne';
 import SubTwo from './subTwo';
+import PreviewImg from './preview';
 
 
 const schema = yup.object().shape({
@@ -35,14 +36,15 @@ let App = () => {
 
   return (
     <div>
-        <FormProvider {...methods}>
+        {/* <FormProvider {...methods}>
         <form onSubmit={handleSubmit(formSubmitHandler)}>
          <SubOne/>
           <SubTwo/>
         <br />
         <button type='submit'>Submit</button>
       </form>
-        </FormProvider>
+        </FormProvider> */}
+        <PreviewImg/>
     </div>
   )
 }

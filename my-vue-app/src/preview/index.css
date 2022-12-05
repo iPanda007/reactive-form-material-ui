@@ -1,0 +1,12 @@
+label{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    height: 40vw;
+    border:1px dashed #656565;
+}
+
+input{
+    display: none;
+}
